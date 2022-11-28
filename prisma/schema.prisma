@@ -11,13 +11,14 @@ model Vehicle {
   id        String   @id @default(cuid())
   name      String  
   mileage   Int
-  reciepts  Reciept[]
+  receipts  Receipt[]
 }
 
-model Reciept {
+model Receipt {
   id        String   @id @default(cuid())
   vehicle   Vehicle  @relation(fields: [vehicleId], references: [id])
   vehicleId String
+  mileage   Int
   date      DateTime
   amount    Decimal
   price     Decimal
