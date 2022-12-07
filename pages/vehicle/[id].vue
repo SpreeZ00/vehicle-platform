@@ -19,7 +19,7 @@
 
                 <label class="font-bold" for="mileage">Mileage</label><br />
                 <input v-if='receipts.length !== 0' class="mb-2 p-1.5 rounded text-black" type="number" name="mileage" id="mileage" :min='receipts[receipts.length - 1].mileage + 1' @change='calcDistance' required/>
-                <input v-else class="mb-2 p-1.5 rounded text-black" type="number" name="mileage" id="mileage" :min='vehicle.vehicle.mileage + 1' @change='calcDistance' required/><br />
+                <input v-else class="mb-2 p-1.5 rounded text-black" type="number" name="mileage" id="mileage" :min='vehicle.mileage + 1' @change='calcDistance' required/><br />
 
                 <label class="font-bold" for="distance">Distance</label><br />
                 <input class="mb-2 p-1.5 rounded text-black" type="number" name="distance" id="distance" readonly/><br />
@@ -40,10 +40,12 @@
 </template>
 
 <script setup lang='ts'>
+import { Receipt, Vehicle } from '.prisma/client';
+
 const router = useRouter();
 const route = useRoute();
-const { data: vehicle } = await useFetch('/api/getVehicle?id=' + route.params.id);
-const { refresh, pending, data: receipts }= await useLazyFetch('/api/getReceipts?vehicleId=' + route.params.id);
+const { data: vehicle }: Vehicle = await useFetch('/api/getVehicle?id=' + route.params.id);
+const { refresh, pending, data: receipts }: Receipt = await useLazyFetch('/api/getReceipts?vehicleId=' + route.params.id);
 const showPopupModal = ref(false);
 
 useHead({
@@ -99,7 +101,7 @@ const calcDistance = () => {
     if (receipts.value.length !== 0) {
         distance.value = (Number(mileage.value) - receipts.value[receipts.value.length - 1].mileage);
     } else {
-        distance.value = (Number(mileage.value) - vehicle.value.vehicle.mileage);
+        distance.value = (Number(mileage.value) - vehicle.value.mileage);
     }
 }
 </script>
