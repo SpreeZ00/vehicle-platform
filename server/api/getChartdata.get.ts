@@ -22,8 +22,7 @@ export default defineEventHandler(async () => {
             },
         },
     });
-
-    console.log(chartData);
+    
     chartData.forEach((vehicle) => {
         labels.push(vehicle.name);
         backgroundColor.push(getRandomColor());
