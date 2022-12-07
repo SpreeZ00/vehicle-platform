@@ -7,9 +7,8 @@ export default defineNuxtConfig({
         plugins: {
             tailwindcss: {},
             autoprefixer: {},
-        }
+        },
     },
-    css: [
-        '@/assets/css/main.css',
-    ],
-})
+    css: ['@/assets/css/main.css'],
+    modules: ['nuxt-icon'],
+});
