@@ -20,6 +20,6 @@ model Receipt {
   vehicleId String
   mileage   Int
   date      DateTime
-  amount    Decimal
-  price     Decimal
+  amount    Decimal @db.Decimal(10, 2)
+  price     Decimal @db.Decimal(10, 3)
 }

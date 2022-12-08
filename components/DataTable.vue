@@ -15,12 +15,13 @@
             <tr v-for='(receipt) in receipts' :key='receipt.id'>
                 <td>{{ formatDate(receipt.date) }}</td>
                 <td class="hidden sm:table-cell">{{ receipt.mileage }}</td>
-                <td>{{ calcDistance(receipt) }}</td>
-                <td>{{ receipt.amount }}</td>
+                <td>{{ calcDistance(receipt) }} km</td>
+                <td>{{ receipt.amount }} l</td>
                 <td>{{ calcConsumption(receipt) }}</td>
                 <td class="hidden sm:table-cell">{{ formatPrice(Number(receipt.price)) }}</td>
                 <td class='flex gap-2 justify-center'>
-                    <button class='btn btn-danger' @click="$emit('deleteReceipt', receipt.id)">Delete</button>
+                    <button class="btn btn-primary" @click="$emit('updateReceipt', receipt.id)"><Icon class="text-2xl" name="material-symbols:edit" /></button>
+                    <button class='btn btn-danger' @click="$emit('deleteReceipt', receipt.id)"><Icon class="text-2xl" name="material-symbols:delete-forever" /></button>
                 </td>
             </tr>
         </tbody>
@@ -30,14 +31,14 @@
 <script setup lang='ts'>
 const route = useRoute();
 const props = defineProps(['receipts', 'vehicle']);
-const emits = defineEmits(['deleteReceipt']);
+const emits = defineEmits(['deleteReceipt', 'updateReceipt']);
 
 const calcDistance = (receipt: any) => {
     return props.receipts.indexOf(receipt) === 0 ? receipt.mileage - props.vehicle.mileage : receipt.mileage - props.receipts[props.receipts.indexOf(receipt) - 1].mileage;
 }
 
 const calcConsumption = (receipt: any) => {
-    return (receipt.amount / (calcDistance(receipt)) * 100).toFixed(2);
+    return (receipt.amount / (calcDistance(receipt)) * 100).toFixed(2) + " l/100km";
 }
 
 const formatDate = (date: string) => {
@@ -45,6 +46,6 @@ const formatDate = (date: string) => {
 }
 
 const formatPrice = (price: number) => {
-    return price.toFixed(2);
+    return price.toFixed(3).replace(".", ",") + " €";
 }
 </script>

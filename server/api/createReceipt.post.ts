@@ -2,19 +2,19 @@ import { Prisma } from '@prisma/client';
 import prisma from '~/lib/client';
 
 export default defineEventHandler(async (event) => {
-    const { date, mileage, amount, price }: Prisma.ReceiptCreateInput =
-        await readBody(event);
-    const { id, name }: Prisma.VehicleCreateWithoutReceiptsInput =
-        await readBody(event);
+    const body = await readBody(event);
 
-    let d = new Date(date);
+    const { date, mileage, amount, price }: Prisma.ReceiptCreateInput =
+        body;
+    const { id, name }: Prisma.VehicleCreateWithoutReceiptsInput =
+        body;
 
     const result = await prisma.receipt.create({
         data: {
-            date: d,
+            date: new Date(date),
             mileage: Number(mileage),
-            amount: Number(amount),
-            price: Number(price),
+            amount: Number(amount).toFixed(2),
+            price: Number(price).toFixed(3),
             vehicle: {
                 connectOrCreate: {
                     where: {
