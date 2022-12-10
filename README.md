@@ -1,8 +1,25 @@
-# Nuxt 3 Minimal Starter
+# Vehicle-platform
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Description
+
+This project is about a self-hosting platform to keep track of your vehicles.
+
+## Screenshots
+
+WIP
+
+## Pre-requisites
+
+1. Something to host the application
+2. A database (MySQL, MariaDB, PostgreSQL, etc.) supported by [Prisma](https://www.prisma.io/)
 
 ## Setup
+
+Clone the repo:
+
+```bash
+git clone https://github.com/SpreeZ00/vehicle-platform.git 
+```
 
 Make sure to install the dependencies:
 
@@ -17,15 +34,24 @@ npm install
 pnpm install --shamefully-hoist
 ```
 
-## Development Server
-
-Start the development server on http://localhost:3000
+Copy the `.env.example` file to `.env` and fill in the values.
 
 ```bash
-npm run dev
+cp .env.example .env
 ```
 
-## Production
+Run the migrations:
+
+```bash
+# yarn
+yarn prisma migrate dev
+
+# npm
+npm run prisma migrate dev
+
+# pnpm
+pnpm run prisma migrate dev
+```
 
 Build the application for production:
 
@@ -33,10 +59,22 @@ Build the application for production:
 npm run build
 ```
 
-Locally preview production build:
+Start the server locally or check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information:
 
 ```bash
-npm run preview
+npm run start
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Roadmap
+
+- [ ] Demo Platform
+- [ ] More statistics
+- [ ] Add Screenshots
+
+## Contributing
+
+Contributions are welcome!
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
