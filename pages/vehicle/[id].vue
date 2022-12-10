@@ -40,21 +40,21 @@
     <template #title>Edit Receipt</template>
     <template #body>
       <form @submit.prevent='handleUpdate' id="updateReceiptForm" class="flex gap-4 justify-center">
-        <div class="text-center">
+        <div class="text-center flex flex-col space-y-3">
           <h3 class='text-xl'>Actual values</h3>
-          <span>Mileage: {{receipts[receipts.map((receipt) => receipt.id).indexOf(receiptId)].mileage}}</span><br />
-          <span>Date: {{receipts[receipts.map((receipt) => receipt.id).indexOf(receiptId)].date}}</span><br />
-          <span>Refueled: {{receipts[receipts.map((receipt) => receipt.id).indexOf(receiptId)].amount}}</span><br />
-          <span>Price: {{receipts[receipts.map((receipt) => receipt.id).indexOf(receiptId)].price}}</span><br />
+          <span>Mileage: {{receipts[receipts.map((receipt) => receipt.id).indexOf(receiptId)].mileage}} km</span><br />
+          <span>Date: {{new Date(receipts[receipts.map((receipt) => receipt.id).indexOf(receiptId)].date).toLocaleDateString('de-DE', {year: 'numeric', day: '2-digit', month: '2-digit'}) }}</span><br />
+          <span>Refueled: {{receipts[receipts.map((receipt) => receipt.id).indexOf(receiptId)].amount}} l</span><br />
+          <span>Price: {{receipts[receipts.map((receipt) => receipt.id).indexOf(receiptId)].price}} €</span><br />
         </div>
-        <div class="text-center">
+        <div class="text-center flex flex-col space-y-2 text-lg">
           <h3 class='text-xl'>New values</h3>
-          <input v-if="receipts.map((receipt) => receipt.id).indexOf(receiptId) === 0" class="text-black" type="number" name="mileage" id="mileage" :min="vehicle.mileage + 1" />
-          <input v-else class="text-black" type="number" name="mileage" id="mileage" :min="receipts[receipts.map((receipt) => receipt.id).indexOf(receiptId) - 1].mileage + 1" />
+          <input v-if="receipts.map((receipt) => receipt.id).indexOf(receiptId) === 0" class="text-black rounded-md" type="number" name="mileage" id="mileage" :min="vehicle.mileage + 1" />
+          <input v-else class="text-black rounded-md" type="number" name="mileage" id="mileage" :min="receipts[receipts.map((receipt) => receipt.id).indexOf(receiptId) - 1].mileage + 1" />
           <br />
-          <input class="text-black" type="date" name="date" id="date" /><br />
-          <input class="text-black" type="number" name="amount" id="amount" step="0.01" min="0" /><br />
-          <input class="text-black" type="number" name="price" id="price" step="0.01" min="0" /><br />
+          <input class="text-black rounded-md" type="date" name="date" id="date" /><br />
+          <input class="text-black rounded-md" type="number" name="amount" id="amount" step="0.01" min="0" /><br />
+          <input class="text-black rounded-md" type="number" name="price" id="price" step="0.01" min="0" /><br />
             <button class="mt-3 mb-3 btn btn-primary" type="submit">
               Submit
             </button>

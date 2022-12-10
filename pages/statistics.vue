@@ -1,5 +1,5 @@
 <template>
-<div class='bg-[#3D3D3D]'>
+<div class='bg-[#C4C4C4] dark:bg-[#3D3D3D]'>
     <div class="m-3 mb-0">
         <h1 class='text-3xl'>Statistics</h1>
         <br />
