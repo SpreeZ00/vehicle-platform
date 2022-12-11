@@ -18,7 +18,7 @@ WIP
 Clone the repo:
 
 ```bash
-git clone https://github.com/SpreeZ00/vehicle-platform.git 
+git clone https://github.com/SpreeZ00/vehicle-platform.git && cd vehicle-platform/
 ```
 
 Make sure to install the dependencies:
