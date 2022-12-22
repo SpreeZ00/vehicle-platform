@@ -67,7 +67,7 @@ npm run start
 
 ## Roadmap
 
-- [ ] Demo Platform
+- [X] [Demo Platform](https://vehicle-platform.vercel.app)
 - [ ] More statistics
 - [ ] Add Screenshots
 
