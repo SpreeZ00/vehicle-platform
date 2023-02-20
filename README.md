@@ -2,7 +2,9 @@
 
 ## Description
 
-This project is about a self-hosting platform to keep track of your vehicles.
+Vehicle-Platform is a self-hosted web application that allows users to record and manage their vehicles. Users can add and update vehicle information such as brand, model, color and mileage.
+The application automatically calculates the distance traveled between two points in time. The application also has statistics that give users an overview of their vehicle usage. Users can view statistics such as the total mileage of all their vehicles, the average mileage per month, and the most frequently used vehicles.
+Vehicle-Platform is a great way for users to track the usage of their vehicles and gain valuable insights into their vehicle usage.
 
 ## Screenshots
 
